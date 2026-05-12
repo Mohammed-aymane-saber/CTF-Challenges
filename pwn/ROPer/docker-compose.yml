@@ -2,7 +2,7 @@ services:
   pwn-key-forge:
     build: .
     ports:
-      - "10103:5000"
+      - "4000:5000"
     restart: always
     privileged: true
     environment:

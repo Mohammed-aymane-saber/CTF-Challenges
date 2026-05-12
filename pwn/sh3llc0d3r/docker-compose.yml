@@ -2,7 +2,7 @@ services:
   pwn-06:
     build: .
     ports:
-      - "10102:5000"
+      - "4001:5000"
     restart: always
     privileged: true
     environment:
