@@ -1,0 +1,136 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>ISSAWA CITY :: {{ username }}</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <style>
+    :root {
+      --bg: #0a0a10;
+      --panel: #14141c;
+      --line: #2a2a3a;
+      --ink: #e8e8ee;
+      --mute: #8a8aa0;
+      --accent: #ff5555;
+      --accent-2: #ffaa55;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      min-height: 100vh;
+      background: radial-gradient(circle at 30% 0%, #1a1020 0%, var(--bg) 60%);
+      color: var(--ink);
+      font-family: 'Courier New', Consolas, monospace;
+      padding: 32px 24px;
+    }
+    .wrap { max-width: 880px; margin: 0 auto; }
+    .banner {
+      text-align: center;
+      color: var(--accent);
+      letter-spacing: 6px;
+      font-size: 22px;
+      font-weight: bold;
+    }
+    .tag {
+      text-align: center;
+      color: var(--mute);
+      font-size: 12px;
+      letter-spacing: 3px;
+      margin-bottom: 24px;
+    }
+    .topbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 10px 16px;
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      margin-bottom: 18px;
+    }
+    .topbar .who { font-size: 13px; color: var(--mute); letter-spacing: 1px; }
+    .topbar .who strong { color: var(--accent-2); }
+    .topbar a {
+      color: var(--accent);
+      text-decoration: none;
+      font-size: 12px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      padding: 6px 12px;
+      border: 1px solid var(--line);
+      border-radius: 4px;
+    }
+    .topbar a:hover { background: rgba(255, 85, 85, 0.08); }
+    h2 {
+      color: var(--accent-2);
+      font-size: 16px;
+      letter-spacing: 3px;
+      margin: 22px 4px 12px;
+      text-transform: uppercase;
+    }
+    .grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 12px;
+    }
+    .field {
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-left: 3px solid var(--accent);
+      border-radius: 6px;
+      padding: 14px 18px;
+    }
+    .field .label {
+      color: var(--mute);
+      font-size: 11px;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      margin-bottom: 6px;
+    }
+    .field .value {
+      color: var(--ink);
+      font-size: 14px;
+      white-space: pre-wrap;
+      word-break: break-all;
+      margin: 0;
+    }
+    .field .value.empty { color: var(--mute); font-style: italic; }
+    .foot {
+      text-align: center;
+      margin-top: 24px;
+      color: var(--mute);
+      font-size: 11px;
+      letter-spacing: 2px;
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <div class="banner">ISSAWA CITY</div>
+    <div class="tag">// PROFILE TERMINAL //</div>
+
+    <div class="topbar">
+      <div class="who">SESSION :: <strong>{{ username }}</strong></div>
+      <a href="{{ url_for('logout') }}">Logout</a>
+    </div>
+
+    <h2>Profile Data</h2>
+    <div class="grid">
+      {% for i in range(1, 6) %}
+        {% set key = 'field' ~ i %}
+        {% set value = fields[key] %}
+        <div class="field">
+          <div class="label">Field {{ i }}</div>
+          {% if value %}
+            <pre class="value">{{ value }}</pre>
+          {% else %}
+            <pre class="value empty">(empty)</pre>
+          {% endif %}
+        </div>
+      {% endfor %}
+    </div>
+
+    <div class="foot">read-only :: data sourced from /app/data/{{ username }}.json</div>
+  </div>
+</body>
+</html>

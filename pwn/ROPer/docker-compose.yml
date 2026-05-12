@@ -1,0 +1,16 @@
+services:
+  pwn-key-forge:
+    build: .
+    ports:
+      - "10103:5000"
+    restart: always
+    privileged: true
+    environment:
+      JAIL_TIME: "30"
+      JAIL_MEM: "64M"
+      JAIL_PIDS: "5"
+      JAIL_CPU: "100"
+      JAIL_PORT: "5000"
+      JAIL_FLAG: "FLAG{k3y_f0rg3d_w1th_r0p_ch41ns_4r3_sharp}"
+      JAIL_FLAG_PATH: "/app/flag.txt"
+      JAIL_CGROUP_MEM_MAX: "67108864"

@@ -1,0 +1,27 @@
+services:
+  web:
+    build:
+      context: .
+      dockerfile: Dockerfile.web
+    container_name: issawa_web
+    restart: unless-stopped
+    ports:
+      - "0.0.0.0:${HOST_WEB_PORT}:5000"
+    volumes:
+      - ./shared_data:/app/data
+
+  pwn:
+    build:
+      context: .
+      dockerfile: Dockerfile.pwn
+    container_name: issawa_pwn
+    restart: unless-stopped
+    privileged: true
+    ports:
+      - "0.0.0.0:${HOST_PWN_PORT}:5000"
+    volumes:
+      - ./shared_data:/srv/app/data
+    environment:
+      JAIL_ENV_WEB_DOMAIN: ${WEB_DOMAIN}
+      JAIL_ENV_HOST_WEB_PORT: ${HOST_WEB_PORT}
+      JAIL_TIME: 300

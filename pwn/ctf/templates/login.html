@@ -1,0 +1,128 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>ISSAWA CITY :: Login</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <style>
+    :root {
+      --bg: #0a0a10;
+      --panel: #14141c;
+      --line: #2a2a3a;
+      --ink: #e8e8ee;
+      --mute: #8a8aa0;
+      --accent: #ff5555;
+      --accent-2: #ffaa55;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      min-height: 100vh;
+      background: radial-gradient(circle at 30% 0%, #1a1020 0%, var(--bg) 60%);
+      color: var(--ink);
+      font-family: 'Courier New', Consolas, monospace;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+    }
+    .wrap { width: 100%; max-width: 420px; }
+    .banner {
+      text-align: center;
+      color: var(--accent);
+      letter-spacing: 6px;
+      font-size: 22px;
+      font-weight: bold;
+      margin-bottom: 4px;
+    }
+    .tag {
+      text-align: center;
+      color: var(--mute);
+      font-size: 12px;
+      letter-spacing: 3px;
+      margin-bottom: 28px;
+    }
+    .card {
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      padding: 28px 28px 24px;
+      box-shadow: 0 0 40px rgba(255, 85, 85, 0.06);
+    }
+    h2 {
+      margin: 0 0 18px;
+      color: var(--accent-2);
+      font-size: 18px;
+      letter-spacing: 2px;
+    }
+    label {
+      display: block;
+      margin: 14px 0 6px;
+      color: var(--mute);
+      font-size: 11px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+    }
+    input[type="text"], input[type="password"] {
+      width: 100%;
+      padding: 10px 12px;
+      background: #0a0a10;
+      border: 1px solid var(--line);
+      color: var(--ink);
+      font-family: inherit;
+      font-size: 14px;
+      outline: none;
+      border-radius: 4px;
+    }
+    input:focus { border-color: var(--accent); }
+    button {
+      margin-top: 22px;
+      width: 100%;
+      padding: 11px;
+      background: var(--accent);
+      color: #0a0a10;
+      border: 0;
+      border-radius: 4px;
+      cursor: pointer;
+      font-family: inherit;
+      font-weight: bold;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+    }
+    button:hover { background: #ff7777; }
+    .error {
+      margin-top: 14px;
+      padding: 8px 10px;
+      background: rgba(255, 85, 85, 0.08);
+      border-left: 3px solid var(--accent);
+      color: #ff8888;
+      font-size: 13px;
+    }
+    .foot {
+      text-align: center;
+      margin-top: 18px;
+      color: var(--mute);
+      font-size: 11px;
+      letter-spacing: 2px;
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <div class="banner">ISSAWA CITY</div>
+    <div class="tag">// PROFILE TERMINAL //</div>
+    <div class="card">
+      <h2>SIGN IN</h2>
+      <form method="post" action="{{ url_for('login') }}" autocomplete="off">
+        <label for="username">Username</label>
+        <input type="text" id="username" name="username" autocomplete="off" required>
+        <label for="password">Password</label>
+        <input type="password" id="password" name="password" autocomplete="off" required>
+        <button type="submit">Authenticate</button>
+        {% if error %}<div class="error">{{ error }}</div>{% endif %}
+      </form>
+    </div>
+    <div class="foot">read-only :: profile viewer</div>
+  </div>
+</body>
+</html>
